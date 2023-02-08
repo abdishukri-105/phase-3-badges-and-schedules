@@ -6,28 +6,25 @@ def badge_maker (name)
      "Hello, my name is #{name}."
 end 
 
-def batch_badge_creator(names)
-   badge_messages = []
-   names.each do |name|
-    badge_messages << "Hello, my name is #{name}."
-   end
-   badge_messages
+
+def batch_badge_creator(speakers)
+  speakers.map do |speaker|
+    "Hello, my name is #{speaker}."
+  end
 end
 
+
 def assign_rooms(speakers)
-    room_assignments = []
-    speakers.each_with_index do |speaker, index|
-      room = index + 1
-      room_assignments << "Hello, #{speaker}! You'll be assigned to room #{room}!"
-    end
-    room_assignments
+  speakers.map.with_index(1) do |speaker, index|
+    "Hello, #{speaker}! You'll be assigned to room #{index}!"
   end
-  
-  def printer(speakers)
-    badge_messages = batch_badge_creator(speakers)
-    badge_messages.each { |message| puts message }
-  
-    room_assignments = assign_rooms(speakers)
-    room_assignments.each { |assignment| puts assignment }
-  end
-  
+end
+
+def printer(speakers)
+  badge_messages = batch_badge_creator(speakers)
+  badge_messages.map { |message| puts message }
+
+  room_assignments = assign_rooms(speakers)
+  room_assignments.map { |assignment| puts assignment }
+end
+
